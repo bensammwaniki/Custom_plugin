@@ -37,7 +37,6 @@ function kandara_create_volunteer_table() {
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         first_name varchar(50) NOT NULL,
         last_name varchar(50) NOT NULL,
-        id_no varchar(20) NOT NULL,
         email varchar(50) NOT NULL,
         phone varchar(20) NOT NULL,
         gender varchar(10) NOT NULL,

@@ -47,3 +47,13 @@ label{
     font-size: 12px;
     font-weight: normal;
 }
+td{
+    padding: 8px; border: 1px solid #dee2e6; 
+    text-align: center;
+}
+th{
+    padding: 8px; background-color: #262261; 
+    color: #fff; 
+    border: 1px solid #dee2e6; 
+    text-align: center;
+}

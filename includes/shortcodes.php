@@ -134,17 +134,20 @@ function kandara_volunteer_registration_form() {
                     <label for="phone_volunteer">Phone Number</label>
                     <input type="text" name="phone_volunteer" id="phone" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
-                    <label for="gender_volunteer">Gender</label>
-                    <select name="gender_volunteer" id="gender" class="form-select" required>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </div>
+                    <div class="form-group col-6">
+                        <label>Gender</label>
+                        <div class="form-check">
+                            <input type="radio" name="gender" id="male" value="Male" class="form-check-input" required>
+                            <label for="male" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" name="gender" id="female" value="Female" class="form-check-input" required>
+                            <label for="female" class="form-check-label">Female</label>
+                        </div>
+                    </div>
             </div>
             <hr style="width:100%;text-align:left;margin:20px 0px 20px 0px;">
-            <div class="form-group">
+            <div class="form-group col-6">
                 <label>Preferred Volunteer Role</label>
                 <select name="volunteer_role" id="volunteer_role" class="form-select" required>
                     <option value="Registration">Registration</option>
@@ -153,7 +156,9 @@ function kandara_volunteer_registration_form() {
                     <option value="Cheer Squad">Cheer Squad</option>
                 </select>
             </div>
-            <input type="submit" name="kandara_volunteer_register" value="Submit" class="btn btn-primary">
+                <div class="form-group col-6">
+                    <input type="submit" name="kandara_volunteer_register" value="Submit to Volunteer" class="btn btn-primary">
+                </div>   
         </div>
     </form>
     <hr style="width:100%;text-align:left;margin:40px 0px 20px 0px;">

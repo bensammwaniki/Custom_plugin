@@ -43,7 +43,6 @@ function kandara_process_volunteer_form() {
     $data = array(
         'first_name' => sanitize_text_field($_POST['first_name_volunteer']),
         'last_name' => sanitize_text_field($_POST['last_name_volunteer']),
-        'id_no' => sanitize_text_field($_POST['id_no_volunteer']),
         'email' => sanitize_email($_POST['email_volunteer']),
         'phone' => sanitize_text_field($_POST['phone_volunteer']),
         'gender' => sanitize_text_field($_POST['gender_volunteer']),
