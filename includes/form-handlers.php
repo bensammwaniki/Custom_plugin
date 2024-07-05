@@ -26,7 +26,11 @@ function kandara_process_form() {
 
     $wpdb->insert($table_name, $data);
 
-    wp_redirect(home_url('/thank-you'));
+    echo '<script>';
+    echo 'alert("Your registration has been successfully submitted.Thank You !!🥳🎉");';
+    echo 'window.location.href = "' . esc_url(home_url('/register-now')) . '";';
+    echo '</script>';    
+    
     exit;
 }
 add_action('admin_post_nopriv_kandara_process_form', 'kandara_process_form');
@@ -42,7 +46,6 @@ function kandara_process_volunteer_form() {
 
     $data = array(
         'first_name' => sanitize_text_field($_POST['first_name_volunteer']),
-        'last_name' => sanitize_text_field($_POST['last_name_volunteer']),
         'email' => sanitize_email($_POST['email_volunteer']),
         'phone' => sanitize_text_field($_POST['phone_volunteer']),
         'gender' => sanitize_text_field($_POST['gender_volunteer']),
@@ -51,8 +54,14 @@ function kandara_process_volunteer_form() {
 
     $wpdb->insert($table_name, $data);
 
-    wp_redirect(home_url('/thank-you-volunteer'));
-    exit;
+        echo '<script>';
+        echo 'alert("Your have been successfully registered as a volunteer.Thank you!!.🥳🎉");';
+        echo 'window.location.href = "' . esc_url(home_url('/volunteer')) . '";';
+        echo '</script>';    
+        
+        exit;
 }
 add_action('admin_post_nopriv_kandara_process_volunteer_form', 'kandara_process_volunteer_form');
 add_action('admin_post_kandara_process_volunteer_form', 'kandara_process_volunteer_form');
+
+?>

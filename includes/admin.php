@@ -16,7 +16,7 @@ function kandara_display_admin_page() {
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="deleteForm">
             <input type="hidden" name="action" value="kandara_delete_rows">
             <input type="hidden" name="table" value="kandara_registrations">
-            <table class="">
+            <table class="widefat fixed striped">
                 <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"></th>
@@ -94,13 +94,12 @@ function kandara_display_volunteers_page() {
         <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="deleteForm">
             <input type="hidden" name="action" value="kandara_delete_rows">
             <input type="hidden" name="table" value="kandara_volunteers">
-            <table class="">
+            <table class="widefat fixed striped">
                 <thead>
                     <tr>
                         <th><input type="checkbox" id="checkAll"></th>
                         <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Full Names</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Gender</th>
@@ -113,7 +112,6 @@ function kandara_display_volunteers_page() {
                         <td><input type="checkbox" name="ids[]" value="<?php echo esc_html($row->id); ?>"></td>
                         <td><?php echo esc_html($row->id); ?></td>
                         <td><?php echo esc_html($row->first_name); ?></td>
-                        <td><?php echo esc_html($row->last_name); ?></td>
                         <td><?php echo esc_html($row->email); ?></td>
                         <td><?php echo esc_html($row->phone); ?></td>
                         <td><?php echo esc_html($row->gender); ?></td>
@@ -160,7 +158,7 @@ function kandara_export_csv() {
     } elseif ($table_name === $wpdb->prefix . 'kandara_volunteers') {
         $filename = 'kandara_volunteers_' . date('Y-m-d') . '.csv';
         $results = $wpdb->get_results("SELECT * FROM $table_name", ARRAY_A);
-        $columns = array('ID', 'First Name', 'Last Name', 'ID No', 'Email', 'Phone', 'Gender', 'Volunteer Services', 'Volunteer Role');
+        $columns = array('ID', 'Full Name', 'Last Name', 'Email', 'Phone', 'Gender', 'Volunteer Role');
     } else {
         wp_die('Invalid table specified.');
     }

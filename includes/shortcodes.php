@@ -115,16 +115,25 @@ function kandara_volunteer_registration_form() {
             <!-- Form Fields -->
             <div class="row align-items-start">
                 <div class="form-group col-6">
-                    <label for="first_name_volunteer">First & Second Name</label>
+                    <label for="first_name_volunteer">Full Names</label>
                     <input type="text" name="first_name_volunteer" id="first_name" class="form-control" required>
                 </div>
                 <div class="form-group col-6">
-                    <label for="last_name_volunteer">Last Name</label>
-                    <input type="text" name="last_name_volunteer" id="last_name" class="form-control" required>
-                </div>
-                <div class="form-group col-6">
-                    <label for="id_no_volunteer">ID No</label>
-                    <input type="text" name="id_no_volunteer" id="id_no" class="form-control" required>
+                    <label>please select your Preferred Volunteer Role</label>
+                    <select name="volunteer_role" id="volunteer_role" class="form-select" required>
+                        <option value="Clean-up Crew">Clean-up Crew</option>
+                        <option value="Course Marshals">Course Marshals</option>
+                        <option value="Cyclists">Cyclists</option>
+                        <option value="Entertainment team (MC, DJ, Warm-up Hypeman)">Entertainment team (MC, DJ, Warm-up Hypeman)</option>
+                        <option value="Information Ambassadors">Information Ambassadors</option>
+                        <option value="Logistics and Setup Crew">Logistics and Setup Crew</option>
+                        <option value="Logistics Cars &Drivers">Logistics Cars &Drivers</option>
+                        <option value="Water Stations Crew">Water Stations Crew</option>
+                        <option value="T-shirt Pickup teams">T-shirt Pickup teams</option>
+                        <option value="Security Officers">Security Officers</option>
+                        <option value="Medical Team">Medical Team</option>
+                        <option value="Medals Team">Medals Team</option>
+                    </select>
                 </div>
                 <div class="form-group col-6">
                     <label for="email_volunteer">Email</label>
@@ -134,7 +143,9 @@ function kandara_volunteer_registration_form() {
                     <label for="phone_volunteer">Phone Number</label>
                     <input type="text" name="phone_volunteer" id="phone" class="form-control" required>
                 </div>
-                    <div class="form-group col-6">
+            </div>
+            <div class="row align-items-start">
+                <div class="form-group col-6">
                         <label>Gender</label>
                         <div class="form-check">
                             <input type="radio" name="gender" id="male" value="Male" class="form-check-input" required>
@@ -145,20 +156,11 @@ function kandara_volunteer_registration_form() {
                             <label for="female" class="form-check-label">Female</label>
                         </div>
                     </div>
-            </div>
-            <hr style="width:100%;text-align:left;margin:20px 0px 20px 0px;">
-            <div class="form-group col-6">
-                <label>Preferred Volunteer Role</label>
-                <select name="volunteer_role" id="volunteer_role" class="form-select" required>
-                    <option value="Registration">Registration</option>
-                    <option value="Logistics">Logistics</option>
-                    <option value="Medical Assistance">Medical Assistance</option>
-                    <option value="Cheer Squad">Cheer Squad</option>
-                </select>
-            </div>
                 <div class="form-group col-6">
+                    <label>please note all fields are required *</label>
                     <input type="submit" name="kandara_volunteer_register" value="Submit to Volunteer" class="btn btn-primary">
-                </div>   
+                </div>  
+            </div> 
         </div>
     </form>
     <hr style="width:100%;text-align:left;margin:40px 0px 20px 0px;">
@@ -166,3 +168,5 @@ function kandara_volunteer_registration_form() {
     return ob_get_clean();
 }
 add_shortcode('kandara_volunteer_registration_form', 'kandara_volunteer_registration_form');
+
+?>
