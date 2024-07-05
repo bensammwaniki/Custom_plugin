@@ -41,20 +41,16 @@ function kandara_create_registration_table() {
     dbDelta($sql);
 }
 
-// Hook function to create tables after switching theme
 add_action('after_switch_theme', 'kandara_create_tables');
 
-// Function to drop tables
 function kandara_drop_tables() {
     global $wpdb;
     $registration_table_name = $wpdb->prefix . 'kandara_registrations';
     $volunteer_table_name = $wpdb->prefix . 'kandara_volunteers';
 
-    // Drop tables if they exist
     $wpdb->query("DROP TABLE IF EXISTS $registration_table_name");
     $wpdb->query("DROP TABLE IF EXISTS $volunteer_table_name");
 }
 
-// Hook function to drop tables when switching theme
 add_action('switch_theme', 'kandara_drop_tables');
 ?>
