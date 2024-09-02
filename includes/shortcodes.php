@@ -2,35 +2,43 @@
 // Marathon Registration Form Shortcode
 function kandara_registration_form() {
     ob_start();
-    ?>
-    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="kandara-form">
-        <input type="hidden" name="action" value="kandara_process_form">
-        <?php wp_nonce_field('kandara-registration-form', 'kandara-registration-nonce'); ?>
+    ?>    
+    <form method="post" class="kandara-form">
+      <?php wp_nonce_field('kandara-registration-form', 'kandara-registration-nonce'); ?>
         <div class="container text-start">
             <h2>Marathon Registration</h2>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert" hidden>
+                        Your registration was successful! 🎉
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <!-- Error Alert -->
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert" hidden>
+                        There was an error processing your registration. Please try again.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
             <!-- Form Fields -->
             <div class="row align-items-start">
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="first_name">First Name</label>
                     <input type="text" name="first_name" id="first_name" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="last_name">Last Name</label>
                     <input type="text" name="last_name" id="last_name" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="id_no">ID No</label>
                     <input type="text" name="id_no" id="id_no" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="email">Email</label>
                     <input type="email" name="email" id="email" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="phone">Phone Number</label>
                     <input type="text" name="phone" id="phone" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="mpesa_phone">Mpesa Phone Number</label>
                     <input type="text" name="mpesa_phone" id="mpesa_phone" class="form-control">
                 </div>
@@ -101,6 +109,7 @@ function kandara_registration_form() {
     <?php
     return ob_get_clean();
 }
+
 add_shortcode('kandara_registration_form', 'kandara_registration_form');
 
 // Volunteer Registration Form Shortcode
@@ -114,11 +123,11 @@ function kandara_volunteer_registration_form() {
             <h2>Volunteer Registration</h2>
             <!-- Form Fields -->
             <div class="row align-items-start">
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="first_name_volunteer">Full Names</label>
                     <input type="text" name="first_name_volunteer" id="first_name" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label>please select your Preferred Volunteer Role</label>
                     <select name="volunteer_role" id="volunteer_role" class="form-select" required>
                         <option value="Clean-up Crew">Clean-up Crew</option>
@@ -135,17 +144,17 @@ function kandara_volunteer_registration_form() {
                         <option value="Medals Team">Medals Team</option>
                     </select>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="email_volunteer">Email</label>
                     <input type="email" name="email_volunteer" id="email" class="form-control" required>
                 </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label for="phone_volunteer">Phone Number</label>
                     <input type="text" name="phone_volunteer" id="phone" class="form-control" required>
                 </div>
             </div>
             <div class="row align-items-start">
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                         <label>Gender</label>
                         <div class="form-check">
                             <input type="radio" name="gender" id="male" value="Male" class="form-check-input" required>
@@ -156,7 +165,7 @@ function kandara_volunteer_registration_form() {
                             <label for="female" class="form-check-label">Female</label>
                         </div>
                     </div>
-                <div class="form-group col-6">
+                <div class="form-group col-12 col-md-6">
                     <label>please note all fields are required *</label>
                     <input type="submit" name="kandara_volunteer_register" value="Submit to Volunteer" class="btn btn-primary">
                 </div>  

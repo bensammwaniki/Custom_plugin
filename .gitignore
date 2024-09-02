@@ -1,0 +1,51 @@
+# Ignore composer dependencies
+/vendor/
+
+/composer.lock
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Ignore IDE and editor files
+/.idea/
+/.vscode/
+/*.sublime-workspace
+/*.sublime-project
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore log and debug files
+*.log
+
+# Ignore PHPStorm project files
+/.phpstorm.meta.php
+/.phpunit.result.cache
+
+# Ignore PHPUnit result cache
+phpunit.result.cache
+
+# Ignore Laravel related files (if using Laravel)
+/storage/*.key
+/storage/*.log
+/storage/debugbar
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/oauth-private.key
+/storage/oauth-public.key
+/storage/logs/*.log
+
+# Ignore node_modules if using npm or Yarn
+/node_modules/
+
+/npm-debug.log*
+/yarn-error.log
+
+# Ignore cached packages and system files
+/.composer/
+/*.tar.gz

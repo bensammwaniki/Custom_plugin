@@ -56,3 +56,9 @@ th{
     border: 1px solid #dee2e6; 
     text-align: center;
 }
+
+@media (max-width: 576px) {
+    .form-switch .form-check-label {
+        font-size: 8px;
+    }
+}

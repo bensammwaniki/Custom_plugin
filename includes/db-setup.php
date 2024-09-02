@@ -18,6 +18,7 @@ function kandara_create_registration_table() {
         tshirt_size varchar(5) NOT NULL,
         pickup_point varchar(255) NOT NULL,
         gender varchar(10) NOT NULL,
+        bib_no varchar(10) NOT NULL,
         email_updates tinyint(1) DEFAULT 0,
         whatsapp_updates tinyint(1) DEFAULT 0,
         terms_conditions tinyint(1) NOT NULL,
@@ -29,7 +30,6 @@ function kandara_create_registration_table() {
     $sql .= "CREATE TABLE $table_name_volunteers (
         id mediumint(9) NOT NULL AUTO_INCREMENT,
         first_name varchar(50) NOT NULL,
-        last_name varchar(50) NOT NULL,
         email varchar(50) NOT NULL,
         phone varchar(20) NOT NULL,
         gender varchar(10) NOT NULL,

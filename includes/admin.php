@@ -32,6 +32,7 @@ function kandara_display_admin_page() {
                         <th>T-Shirt Size</th>
                         <th>Pickup Point</th>
                         <th>Gender</th>
+                        <th>Bib NO:</th>
                         <th>Email Updates</th>
                         <th>WhatsApp Updates</th>
                         <th>Terms & Conditions</th>
@@ -53,6 +54,7 @@ function kandara_display_admin_page() {
                         <td><?php echo esc_html($row->tshirt_size); ?></td>
                         <td><?php echo esc_html($row->pickup_point); ?></td>
                         <td><?php echo esc_html($row->gender); ?></td>
+                        <td><?php echo esc_html($row->bib_no); ?></td>
                         <td><?php echo $row->email_updates ? 'Yes' : 'No'; ?></td>
                         <td><?php echo $row->whatsapp_updates ? 'Yes' : 'No'; ?></td>
                         <td><?php echo $row->terms_conditions ? 'Yes' : 'No'; ?></td>
