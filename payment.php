@@ -1,19 +1,64 @@
 <?php
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Include WordPress functions
-require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
-require_once('vendor/autoload.php'); // if you are using Composer for the Guzzle HTTP client
+// Function to generate access token
+function getMpesaAccessToken() {
+    // Get the credentials from environment variables or hardcode them here for testing
+    $consumerKey = "rf3PCcVxTu8G9sw8LVqX5u51EZ4UmFohH3GsvBbxOO9wLNBn";
+    $consumerSecret = "ZdxujcOhvWVAAPggPgcZjzCGpResL8eEs15Dfteq2Jsx9pLHJ5183trSlgzPL4XJ";
+    
+    // Define the API endpoint
+    $url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+    try {
+        // Initialize the Guzzle HTTP client
+        $client = new Client();
+        
+        // Prepare the request with Basic Authentication
+        $response = $client->request('GET', $url, [
+            'auth' => [$consumerKey, $consumerSecret] // Basic Auth: base64(consumerKey:consumerSecret)
+        ]);
+        
+        // Decode the JSON response
+        $body = json_decode($response->getBody(), true);
+        
+        // Return the access token if successful
+        if (isset($body['access_token'])) {
+            return $body['access_token'];
+        } else {
+            error_log('Error: Access token not found in the response.');
+            return false;
+        }
 
+    } catch (RequestException $e) {
+        // Log the error message
+        error_log('RequestException: ' . $e->getMessage());
+        
+        // If there's a response, log the status and body
+        if ($e->hasResponse()) {
+            $response = $e->getResponse();
+            error_log('Response Status: ' . $response->getStatusCode());
+            error_log('Response Body: ' . $response->getBody());
+        }
+        
+        return false;
+    } catch (Exception $e) {
+        // Log any other exceptions
+        error_log('Exception: ' . $e->getMessage());
+        return false;
+    }
+}
+
+// M-Pesa STK Push Payment Function
 function process_kandara_payment() {
     error_log('process_kandara_payment() called');
-    // Handle the form submission
+
     if (isset($_POST['kandara_register'])) {
         // Verify nonce for security
         if (!isset($_POST['kandara-registration-nonce']) || !wp_verify_nonce($_POST['kandara-registration-nonce'], 'kandara-registration-form')) {
@@ -24,8 +69,12 @@ function process_kandara_payment() {
         // Store the form data in session
         $_SESSION['form_data'] = $_POST;
 
-        // Initialize the Guzzle HTTP client
-        $client = new Client();
+        // Get M-Pesa Access Token
+        $accessToken = getMpesaAccessToken();
+        if (!$accessToken) {
+            wp_send_json_error('Unable to retrieve M-PESA access token.');
+            return;
+        }
 
         // Safaricom API credentials
         $businessShortCode = '174379'; // Business Shortcode
@@ -35,13 +84,6 @@ function process_kandara_payment() {
 
         // M-PESA endpoint
         $url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
-
-        // Access token
-        $accessToken = getMpesaAccessToken(); // Implement this function to get access token
-        if (!$accessToken) {
-            wp_send_json_error('Unable to retrieve M-PESA access token.');
-            return;
-        }
 
         // Prepare the request body
         $body = [
@@ -57,6 +99,9 @@ function process_kandara_payment() {
             'AccountReference' => 'Test',
             'TransactionDesc' => 'Test'
         ];
+
+        // Initialize the Guzzle HTTP client
+        $client = new Client();
 
         // Send the request
         try {
@@ -91,32 +136,6 @@ function process_kandara_payment() {
             error_log('Exception: ' . $e->getMessage());
             wp_send_json_error('Error: ' . $e->getMessage());
         }
-    }
-}
-
-// Function to get the M-PESA access token
-function getMpesaAccessToken() {
-    $client = new Client();
-
-    try {
-        $response = $client->request('GET', 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials', [
-            'auth' => ['rf3PCcVxTu8G9sw8LVqX5u51EZ4UmFohH3GsvBbxOO9wLNBn', 'ZdxujcOhvWVAAPggPgcZjzCGpResL8eEs15Dfteq2Jsx9pLHJ5183trSlgzPL4XJ']
-        ]);
-
-        $responseBody = json_decode($response->getBody(), true);
-        return $responseBody['access_token'];
-
-    } catch (RequestException $e) {
-        error_log('RequestException in getMpesaAccessToken: ' . $e->getMessage());
-        if ($e->hasResponse()) {
-            $response = $e->getResponse();
-            error_log('Response Status in getMpesaAccessToken: ' . $response->getStatusCode());
-            error_log('Response Body in getMpesaAccessToken: ' . $response->getBody());
-        }
-        return null;
-    } catch (Exception $e) {
-        error_log('Exception in getMpesaAccessToken: ' . $e->getMessage());
-        return null;
     }
 }
 ?>
