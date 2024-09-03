@@ -1,7 +1,3 @@
-Below is a detailed README for your WordPress plugin that integrates SMS notifications using Africa's Talking API, along with registration functionality and M-Pesa payment integration:
-
----
-
 # Kandara Registration Plugin
 
 **Kandara Registration Plugin** is a custom WordPress plugin designed to handle user registrations, send SMS notifications via Africa's Talking API, and facilitate payments using the Safaricom M-Pesa payment gateway. This plugin allows you to manage user registrations seamlessly, send automated SMS notifications, and handle payments securely.
@@ -143,7 +139,3 @@ If you want to contribute to this plugin, feel free to fork the repository and s
 
 ## License
 This plugin is open-source and licensed under the MIT License.
-
----
-
-This README is tailored for your plugin, providing clear instructions on setup, usage, and configuration. Let me know if you need any further adjustments!
