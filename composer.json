@@ -1,6 +1,7 @@
 {
     "require": {
         "africastalking/africastalking": "^3.0",
-        "safaricom/mpesa": "^1.0"
+        "safaricom/mpesa": "^1.0",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

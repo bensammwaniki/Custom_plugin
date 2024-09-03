@@ -12,7 +12,10 @@ if (!defined('ABSPATH')) {
 }
 require 'vendor/autoload.php';
 use AfricasTalking\SDK\AfricasTalking;
+use Dotenv\Dotenv;
 
+$dotenv = Dotenv::createImmutable(plugin_dir_path(__FILE__));
+$dotenv->load();
 // Include necessary files
 include_once plugin_dir_path(__FILE__) . 'includes/enqueue.php';
 include_once plugin_dir_path(__FILE__) . 'includes/shortcodes.php';
